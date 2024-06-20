@@ -3,15 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .game-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .game-buttons button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="main">
-        <h1>Online Shop</h1>
-        <img src="https://www.flaticon.com/free-icon/workspace_4696754?related_id=4696754">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor voluptatum est fuga animi repudiandae ipsam vel? Temporibus exercitationem aut est nobis odit cupiditate illum voluptas, illo necessitatibus repudiandae, quas dolorum.</p>
-        <button id="buy">Buy</button>
-
+    <h1>Гра "Камінь, ножиці, папір"</h1>
+    <div id="game">
+        <p>Виберіть один з варіантів:</p>
+        <div class="game-buttons">
+            <button onclick="chooseOption('Камінь')">Камінь</button>
+            <button onclick="chooseOption('Ножиці')">Ножиці</button>
+            <button onclick="chooseOption('Папір')">Папір</button>
+        </div>
+        <p id="result"></p>
     </div>
+
+    <script>
+        async function chooseOption(option) {
+            let response = await fetch(`/play?choice=${option}`);
+            let result = await response.text();
+            document.getElementById("result").textContent = result;
+        }
+    </script>
 </body>
 </html>
